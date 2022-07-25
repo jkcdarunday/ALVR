@@ -435,7 +435,7 @@ pub enum SocketProtocol {
     Tcp,
 }
 
-#[derive(SettingsSchema, Serialize, Deserialize)]
+#[derive(SettingsSchema, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct DiscoveryConfig {
     #[schema(advanced)]
