@@ -12,7 +12,7 @@ use std::{
 
 pub struct WelcomeSocket {
     buffer: [u8; HANDSHAKE_PACKET_SIZE_BYTES],
-    bradcast_receiver: UdpSocket,
+    broadcast_receiver: UdpSocket,
     mdns_receiver: Receiver<ServiceEvent>,
 }
 
@@ -26,7 +26,7 @@ impl WelcomeSocket {
 
         Ok(Self {
             buffer: [0; HANDSHAKE_PACKET_SIZE_BYTES],
-            bradcast_receiver: socket,
+            broadcast_receiver: socket,
             mdns_receiver,
         })
     }
@@ -37,7 +37,7 @@ impl WelcomeSocket {
 
         loop {
             match self
-                .bradcast_receiver
+                .broadcast_receiver
                 .recv_from(&mut self.buffer)
                 .handle_try_again()
             {
